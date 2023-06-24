@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\algorithms\algorithms.csproj" />
+    <ProjectReference Include="..\data_structures\data_structures.csproj" />
+  </ItemGroup>
+
 </Project>
