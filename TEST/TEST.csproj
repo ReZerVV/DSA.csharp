@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\algorithms\algorithms.csproj" />
     <ProjectReference Include="..\data_structures\data_structures.csproj" />
+    <ProjectReference Include="..\TASKS\TASKS.csproj" />
   </ItemGroup>
 
 </Project>
