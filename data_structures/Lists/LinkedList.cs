@@ -43,6 +43,32 @@ namespace data_structures.Lists
 
         public int Length { get; private set; } = 0;
 
+        public T this[int index]
+        {
+            get
+            {
+                if (0 > index || index >= Length) 
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                int indexList;
+                LinkedListNode<T>? nodeList;
+                for (nodeList = Front, indexList = 0; indexList != index; nodeList = nodeList.Next, indexList += 1) {}
+                return nodeList.Value;
+            }
+            set
+            {
+                if (0 > index || index >= Length) 
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                int indexList;
+                LinkedListNode<T>? nodeList;
+                for (nodeList = Front, indexList = 0; indexList != index; nodeList = nodeList.Next, indexList += 1) {}
+                nodeList.Value = value;
+            }
+        }
+
         public void PushFront(T value)
         {
             LinkedListNode<T> node = new LinkedListNode<T>(value, Front);
