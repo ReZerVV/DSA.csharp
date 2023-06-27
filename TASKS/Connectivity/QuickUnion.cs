@@ -15,7 +15,7 @@
             foreach (var pair in pairs)
             {
                 for (i = pair.Item1; i != id[i]; i = id[i]) {}
-                for (j = pair.Item2; j != id[j]; j = id[j]) { }
+                for (j = pair.Item2; j != id[j]; j = id[j]) {}
                 if (i == j)
                 {
                     continue;
