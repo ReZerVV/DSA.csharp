@@ -15,31 +15,20 @@ namespace data_structures.Lists
         }
     }
 
-    public class LinkedListEnumerator<T> : IEnumerator<T>
-    {
-        public T Current => throw new NotImplementedException();
-
-        object IEnumerator.Current => throw new NotImplementedException();
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool MoveNext()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Reset()
-        {
-            throw new NotImplementedException();
-        }
-    }
-
     public class LinkedList<T> : IEnumerable<T>
     {
         public LinkedListNode<T>? Front { get; private set; } = null;
+
+        public LinkedList()
+        {
+            
+        }
+
+        public LinkedList(LinkedList<T> other)
+        {
+            Front = other.Front;
+            Length = other.Length;
+        }
 
         public int Length { get; private set; } = 0;
 
@@ -98,6 +87,10 @@ namespace data_structures.Lists
 
         public void Insert(int index, T value)
         {
+            if (0 > index || index >= Length)
+            {
+                throw new IndexOutOfRangeException();
+            }
             int indexList;
             LinkedListNode<T>? nodeList;
             for (nodeList = Front, indexList = 0; nodeList != null; nodeList = nodeList.Next, indexList += 1)
@@ -114,6 +107,10 @@ namespace data_structures.Lists
 
         public void Remove(int index)
         {
+            if (0 > index || index >= Length)
+            {
+                throw new IndexOutOfRangeException();
+            }
             int indexList;
             LinkedListNode<T>? nodeList;
             for (nodeList = Front, indexList = 0; nodeList != null; nodeList = nodeList.Next, indexList += 1)
@@ -148,7 +145,12 @@ namespace data_structures.Lists
 
         public IEnumerator<T> GetEnumerator()
         {
-            return new LinkedListEnumerator<T>();
+            LinkedListNode<T> current = Front;
+            while (current != null)
+            {
+                yield return current.Value;
+                current = current.Next;
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
