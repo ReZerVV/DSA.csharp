@@ -2,13 +2,13 @@
 
 namespace data_structures.Lists
 {
-    public class DoubleLinkedListNode<T>
+    public class DoublyLinkedListNode<T>
     {
         public T Value { get; set; }
-        public DoubleLinkedListNode<T>? Next { get; set; }
-        public DoubleLinkedListNode<T>? Prev { get; set; }
+        public DoublyLinkedListNode<T>? Next { get; set; }
+        public DoublyLinkedListNode<T>? Prev { get; set; }
 
-        public DoubleLinkedListNode(T value, DoubleLinkedListNode<T>? prev = null, DoubleLinkedListNode<T>? next = null)
+        public DoublyLinkedListNode(T value, DoublyLinkedListNode<T>? prev = null, DoublyLinkedListNode<T>? next = null)
         {
             Value = value;
             Prev = prev;
@@ -16,17 +16,17 @@ namespace data_structures.Lists
         }
     }
 
-    public class DoubleLinkedList<T> : IEnumerable<T>
+    public class DoublyLinkedList<T> : IEnumerable<T>
     {
-        public DoubleLinkedListNode<T>? Front { get; private set; } = null;
-        public DoubleLinkedListNode<T>? Back { get; private set; } = null;
+        public DoublyLinkedListNode<T>? Front { get; private set; } = null;
+        public DoublyLinkedListNode<T>? Back { get; private set; } = null;
 
-        public DoubleLinkedList()
+        public DoublyLinkedList()
         {
             
         }
 
-        public DoubleLinkedList(DoubleLinkedList<T> other)
+        public DoublyLinkedList(DoublyLinkedList<T> other)
         {
             Front = other.Front;
             Back = other.Back;
@@ -44,7 +44,7 @@ namespace data_structures.Lists
                     throw new IndexOutOfRangeException();
                 }
                 int indexList;
-                DoubleLinkedListNode<T>? nodeList;
+                DoublyLinkedListNode<T>? nodeList;
                 for (nodeList = Front, indexList = 0; indexList != index; nodeList = nodeList.Next, indexList += 1) {}
                 return nodeList.Value;
             }
@@ -55,7 +55,7 @@ namespace data_structures.Lists
                     throw new IndexOutOfRangeException();
                 }
                 int indexList;
-                DoubleLinkedListNode<T>? nodeList;
+                DoublyLinkedListNode<T>? nodeList;
                 for (nodeList = Front, indexList = 0; indexList != index; nodeList = nodeList.Next, indexList += 1) {}
                 nodeList.Value = value;
             }
@@ -63,7 +63,7 @@ namespace data_structures.Lists
 
         public void PushFront(T value)
         {
-            DoubleLinkedListNode<T> node = new DoubleLinkedListNode<T>(value, null, Front);
+            DoublyLinkedListNode<T> node = new DoublyLinkedListNode<T>(value, null, Front);
             if (Front == null) 
             {
                 Back = node;
@@ -84,7 +84,7 @@ namespace data_structures.Lists
 
         public void PushBack(T value)
         {
-            DoubleLinkedListNode<T> node = new DoubleLinkedListNode<T>(value, Back, null);
+            DoublyLinkedListNode<T> node = new DoublyLinkedListNode<T>(value, Back, null);
             if (Back == null) 
             {
                 Front = node;
@@ -100,12 +100,12 @@ namespace data_structures.Lists
                 throw new IndexOutOfRangeException();
             }
             int indexList;
-            DoubleLinkedListNode<T>? nodeList;
+            DoublyLinkedListNode<T>? nodeList;
             for (nodeList = Front, indexList = 0; nodeList != null; nodeList = nodeList.Next, indexList += 1)
             {
                 if (indexList == index)
                 {
-                    DoubleLinkedListNode<T> node = new DoubleLinkedListNode<T>(value, nodeList, nodeList.Next);
+                    DoublyLinkedListNode<T> node = new DoublyLinkedListNode<T>(value, nodeList, nodeList.Next);
                     nodeList.Next = node;
                     node.Next.Prev = node;
                     Length += 1;
@@ -121,7 +121,7 @@ namespace data_structures.Lists
                 throw new IndexOutOfRangeException();
             }
             int indexList;
-            DoubleLinkedListNode<T>? nodeList;
+            DoublyLinkedListNode<T>? nodeList;
             for (nodeList = Front, indexList = 0; nodeList != null; nodeList = nodeList.Next, indexList += 1)
             {
                 if (indexList == index)
@@ -136,7 +136,7 @@ namespace data_structures.Lists
 
         public void Remove(T value)
         {
-            DoubleLinkedListNode<T>? nodeList;
+            DoublyLinkedListNode<T>? nodeList;
             for (nodeList = Front; nodeList != null; nodeList = nodeList.Next)
             {
                 if (nodeList.Value.Equals(value))
@@ -156,7 +156,7 @@ namespace data_structures.Lists
 
         public IEnumerator<T> GetEnumerator()
         {
-            DoubleLinkedListNode<T> current = Front;
+            DoublyLinkedListNode<T> current = Front;
             while (current != null)
             {
                 yield return current.Value;
