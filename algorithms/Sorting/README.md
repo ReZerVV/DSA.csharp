@@ -6,7 +6,7 @@
 
 > Step 1: [ <code style="color: Yellowgreen">9</code>
 			<code style="color: Orangered">6 5 1 2 7 8 4</code> ]\
-> The array is divided into two parts sorted <code style="color: Yellowgreen">[Green]</code> and unsorted <code style="color : Orangered">[Red]</code>
+> The array is divided into two parts sorted and unsorted
 
 > Step 2: [ <code style="color: Yellowgreen">6 9</code>
 			<code style="color: Orangered">5 1 2 7 8 4</code> ]\
