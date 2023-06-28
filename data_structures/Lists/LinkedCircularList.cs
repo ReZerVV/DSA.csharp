@@ -2,13 +2,13 @@
 
 namespace data_structures.Lists
 {
-    class LinkedCircularList<T> : IList<T>
+    public class LinkedCircularList<T> : IList<T>
     {
         public int Length { get; private set; }
 
         private LinkedListNode<T> _first;
 
-        private LinkedListNode<T> _end => FindEnd();
+        private LinkedListNode<T> _end => FindNodeByIndex(Length - 1);
 
         private LinkedListNode<T> FindNodeByIndex(int index)
         {
@@ -16,13 +16,9 @@ namespace data_structures.Lists
             {
                 throw new KeyNotFoundException();
             }
-            if (Math.Abs(index) >= Length)
+            if (0 > index || index >= Length)
             {
                 throw new IndexOutOfRangeException();
-            }
-            if (index < 0)
-            {
-                index = Length - index;
             }
             uint currentIndex = 0;
             LinkedListNode<T> currentNode = _first;
@@ -34,29 +30,15 @@ namespace data_structures.Lists
             return currentNode;
         }
 
-        private LinkedListNode<T> FindEnd()
-        {
-            if (First == null)
-            {
-                throw new KeyNotFoundException();
-            }
-            LinkedListNode<T> currentNode = First;
-            while (ReferenceEquals(First, currentNode.Next))
-            {
-                currentNode = currentNode.Next;
-            }
-            return currentNode;
-        }
-
         public LinkedCircularList()
         {
-            First = null;
+            _first = null;
             Length = 0;
         }
 
         public LinkedCircularList(LinkedCircularList<T> other)
         {
-            First = other.First;
+            _first = other._first;
             Length = other.Length;
         }
 
@@ -90,7 +72,15 @@ namespace data_structures.Lists
 
         public void RemoveAt(int index)
         {
-            LinkedListNode<T> currentNode = FindNodeByIndex(index - 1);
+            if (index == 0)
+            {
+                index = Length - 1;
+            }
+            else
+            {
+                index -= 1;
+            }
+            LinkedListNode<T> currentNode = FindNodeByIndex(index);
             if (Length == 1)
             {
                 _first = null;
@@ -132,7 +122,7 @@ namespace data_structures.Lists
 
         public void Clear() 
         {
-            First = null;
+            _first = null;
             Length = 0;
         }
 
@@ -170,9 +160,18 @@ namespace data_structures.Lists
 
         public void Insert(int index, T value)
         {
-            LinkedListNode<T> currentNode = FindNodeByIndex(index);
-            LinkedListNode<T> node = new LinkedListNode<T>(value, currentNode.Next);
-            currentNode.Next = node;
+            if (_first == null && index == 0)
+            {
+                _first = new LinkedListNode<T>(value);
+                _first = _first.Next;
+            }
+            else
+            {
+                LinkedListNode<T> currentNode = FindNodeByIndex(index);
+                LinkedListNode<T> node = new LinkedListNode<T>(value, currentNode.Next);
+                currentNode.Next = node;
+            }
+            Length += 1;
         }
 
         public bool Empty()
