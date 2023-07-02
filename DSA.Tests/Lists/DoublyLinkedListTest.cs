@@ -42,8 +42,6 @@
         [TestMethod]
         public void IndexOfTest()
         {
-            int expectedIndex = 2;
-
             data_structures.Lists.DoublyLinkedList<int> list = new data_structures.Lists.DoublyLinkedList<int>();
             list.Add(0);
             list.Add(1);
@@ -51,20 +49,20 @@
             list.Add(3);
             list.Add(4);
 
-            Assert.AreEqual(expectedIndex, list.IndexOf(2));
+            Assert.AreEqual(2, list.IndexOf(2));
         }
 
         [TestMethod]
         public void InsertTest()
         {
-            int expectedLength = 3;
 
             data_structures.Lists.DoublyLinkedList<int> list = new data_structures.Lists.DoublyLinkedList<int>();
-            list.Insert(0, 0);
+            list.Add(0);
             list.Insert(0, 1);
             list.Insert(0, 2);
 
-            Assert.AreEqual(expectedLength, list.Length);
+            Assert.AreEqual(3, list.Length);
+            CollectionAssert.AreEqual(new[] { 0,2,1 }, list.ToArray());
         }
 
         [TestMethod]

@@ -119,15 +119,13 @@ namespace data_structures.Lists
             if (_first == null)
             {
                 _first = _end = new DoublyLinkedListNode<T>(value:value);
-                Length += 1;
-                return;
             }
             else
             {
                 _end.Next = new DoublyLinkedListNode<T>(value:value, prev:_end);
-                Length += 1;
-                return;
+                _end = _end.Next;
             }
+            Length += 1;
         }
 
         public void Clear()
@@ -145,24 +143,14 @@ namespace data_structures.Lists
             }
             else
             {
-                if (ReferenceEquals(_first, _end) && _first.Value.Equals(value))
-                {
-                    return true;
-                }
-
                 var currentNode = _first;
-                var reverseNode = _end;
-                while (!ReferenceEquals(currentNode, reverseNode)) 
+                while (currentNode != null) 
                 {
-                    if (currentNode.Value.Equals(value) || reverseNode.Value.Equals(value)) 
+                    if (currentNode.Value.Equals(value)) 
                     {
                         return true;
                     }
-                    if (!ReferenceEquals(currentNode.Next, reverseNode))
-                    {
-                        currentNode = currentNode.Next;
-                    }
-                    reverseNode = reverseNode.Previous;
+                    currentNode = currentNode.Next;
                 }
                 return false;
             }
@@ -191,34 +179,17 @@ namespace data_structures.Lists
             }
             else
             {
-                if (ReferenceEquals(_first, _end) && _first.Value.Equals(value))
-                {
-                    return 0;
-                }
-
                 var indexCurrentNode = 0;
                 var currentNode = _first;
 
-                var indexReverseNode = Length -= 1;
-                var reverseNode = _end;
-                
-                while (!ReferenceEquals(currentNode, reverseNode))
+                while (currentNode != null)
                 {
                     if (currentNode.Value.Equals(value))
                     {
                         return indexCurrentNode;
                     }
-                    if (reverseNode.Value.Equals(value))
-                    {
-                        return indexReverseNode;
-                    }
-                    if (!ReferenceEquals(currentNode.Next, reverseNode))
-                    {
-                        indexCurrentNode += 1;
-                        currentNode = currentNode.Next;
-                    }
-                    indexReverseNode -= 1;
-                    reverseNode = reverseNode.Previous;
+                    indexCurrentNode += 1;
+                    currentNode = currentNode.Next;
                 }
                 return -1;
             }
@@ -226,143 +197,69 @@ namespace data_structures.Lists
 
         public void Insert(int index, T value)
         {
-            if (_first == null && index == 0)
+            var indexCurrentNode = 0;
+            var currentNode = _first;
+            while (currentNode != null)
             {
-                _first = _end = new DoublyLinkedListNode<T>(value:value);
-                Length += 1;
-                return;
-            }
-            else
-            {
-                var indexCurrentNode = 0;
-                var currentNode = _first;
-
-                var indexReverseNode = Length - 1;
-                var reverseNode = _end;
-                while (!ReferenceEquals(currentNode, reverseNode))
+                if (indexCurrentNode == index)
                 {
-                    if (indexCurrentNode == index)
-                    {
-                        var insertNode = new DoublyLinkedListNode<T>(value:value, prev:currentNode, next:currentNode.Next);
+                    var insertNode = new DoublyLinkedListNode<T>(value:value, prev:currentNode, next:currentNode.Next);
+                    if (currentNode.Next != null)
+                    { 
                         currentNode.Next.Previous = insertNode;
-                        currentNode.Next = insertNode;
-                        Length += 1;
-                        return;
                     }
-                    if (indexReverseNode == index)
-                    {
-                        var insertNode = new DoublyLinkedListNode<T>(value: value, prev: reverseNode, next: reverseNode.Next);
-                        reverseNode.Next.Previous = insertNode;
-                        reverseNode.Next = insertNode;
-                        Length += 1;
-                        return;
-                    }
-                    if (!ReferenceEquals(currentNode.Next, reverseNode))
-                    {
-                        indexCurrentNode += 1;
-                        currentNode = currentNode.Next;
-                    }
-                    indexReverseNode -= 1;
-                    reverseNode = reverseNode.Previous;
+                    currentNode.Next = insertNode;
+                    Length += 1;
+                    return;
                 }
+                indexCurrentNode += 1;
+                currentNode = currentNode.Next;
             }
         }
 
         public void Remove(T value)
         {
-            if (_first == null)
+            var currentNode = _first;
+            while (currentNode != null)
             {
-                throw new IndexOutOfRangeException();
-            }
-            else
-            {
-                if (_first.Value.Equals(value)) 
+                if (currentNode.Value.Equals(value))
                 {
-                    _first = _first.Next;
-                    _first.Previous = null;
-                    Length -= 1;
-                    return;
-                }
-
-                if (_end.Value.Equals(value))
-                {
-                    _end = _end.Previous;
-                    _end.Next = null;
-                    Length -= 1;
-                    return;
-                }
-
-                var currentNode = _first.Next;
-                var reverseNode = _end.Previous;
-                while (!ReferenceEquals(currentNode, reverseNode))
-                {
-                    if (currentNode.Value.Equals(value))
+                    if (currentNode.Previous != null)
                     {
                         currentNode.Previous.Next = currentNode.Next;
+                    }
+                    if (currentNode.Next != null)
+                    {
                         currentNode.Next.Previous = currentNode.Previous;
-                        Length -= 1;
-                        return;
                     }
-                    if (reverseNode.Value.Equals(value))
-                    {
-                        reverseNode.Previous.Next = reverseNode.Next;
-                        reverseNode.Next.Previous = reverseNode.Previous;
-                        Length -= 1;
-                        return;
-                    }
-                    if (!ReferenceEquals(currentNode.Next, reverseNode))
-                    {
-                        currentNode = currentNode.Next;
-                    }
-                    reverseNode = reverseNode.Previous;
+                    Length -= 1;
+                    return;
                 }
-                throw new IndexOutOfRangeException();
+                currentNode = currentNode.Next;
             }
         }
 
         public void RemoveAt(int index)
         {
-            if (_first == null)
+            var indexCurrentNode = 0;
+            var currentNode = _first;
+            while (currentNode != null)
             {
-                throw new IndexOutOfRangeException();
-            }
-            else
-            {
-                var indexCurrentNode = 0;
-                var previousCurrentNode = _first.Previous;
-                var currentNode = _first;
-
-                var indexReverseNode = Length - 1;
-                var previousReverseNode = _end.Next;
-                var reverseNode = _end;
-
-                while (!ReferenceEquals(currentNode, reverseNode))
+                if (indexCurrentNode == index)
                 {
-                    if (indexCurrentNode == index)
+                    if (currentNode.Previous != null)
                     {
-                        previousCurrentNode.Next = currentNode.Next;
-                        currentNode.Next.Previous = previousCurrentNode;
-                        Length -= 1;
-                        return;
+                        currentNode.Previous.Next = currentNode.Next;
                     }
-                    if (indexReverseNode == index)
+                    if (currentNode.Next != null)
                     {
-                        previousReverseNode.Next = reverseNode.Next;
-                        reverseNode.Next.Previous = previousReverseNode;
-                        Length -= 1;
-                        return;
+                        currentNode.Next.Previous = currentNode.Previous;
                     }
-                    if (!ReferenceEquals(currentNode.Next, reverseNode))
-                    {
-                        indexCurrentNode += 1;
-                        previousCurrentNode = currentNode;
-                        currentNode = currentNode.Next;
-                    }
-                    indexReverseNode -= 1;
-                    previousReverseNode = reverseNode;
-                    reverseNode = reverseNode.Previous;
+                    Length -= 1;
+                    return;
                 }
-                throw new IndexOutOfRangeException();
+                indexCurrentNode += 1;
+                currentNode = currentNode.Next;
             }
         }
 
