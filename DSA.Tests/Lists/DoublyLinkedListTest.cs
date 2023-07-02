@@ -1,4 +1,6 @@
-﻿namespace DSA.Tests.Lists
+﻿using data_structures.Collections.Lists;
+
+namespace DSA.Tests.Lists
 {
     [TestClass]
     public class DoublyLinkedListTests
@@ -9,7 +11,7 @@
             int expectedLength = 1;
             int expectedValue = 10;
 
-            data_structures.Lists.DoublyLinkedList<int> list = new data_structures.Lists.DoublyLinkedList<int>();
+            DoublyLinkedList<int> list = new data_structures.Collections.Lists.DoublyLinkedList<int>();
             list.Add(expectedValue);
 
             Assert.AreEqual(expectedLength, list.Length);
@@ -21,7 +23,7 @@
         {
             int expectedLength = 0;
             
-            data_structures.Lists.DoublyLinkedList<int> list = new data_structures.Lists.DoublyLinkedList<int>();
+            DoublyLinkedList<int> list = new data_structures.Collections.Lists.DoublyLinkedList<int>();
             list.Add(0);
             list.Add(0);
             list.Add(0);
@@ -33,7 +35,7 @@
         [TestMethod]
         public void ContainsTest()
         {
-            data_structures.Lists.DoublyLinkedList<int> list = new data_structures.Lists.DoublyLinkedList<int>();
+            DoublyLinkedList<int> list = new data_structures.Collections.Lists.DoublyLinkedList<int>();
             list.Add(0);
 
             Assert.IsTrue(list.Contains(0));
@@ -42,7 +44,7 @@
         [TestMethod]
         public void IndexOfTest()
         {
-            data_structures.Lists.DoublyLinkedList<int> list = new data_structures.Lists.DoublyLinkedList<int>();
+            DoublyLinkedList<int> list = new data_structures.Collections.Lists.DoublyLinkedList<int>();
             list.Add(0);
             list.Add(1);
             list.Add(2);
@@ -56,7 +58,7 @@
         public void InsertTest()
         {
 
-            data_structures.Lists.DoublyLinkedList<int> list = new data_structures.Lists.DoublyLinkedList<int>();
+            DoublyLinkedList<int> list = new data_structures.Collections.Lists.DoublyLinkedList<int>();
             list.Add(0);
             list.Insert(0, 1);
             list.Insert(0, 2);
@@ -68,7 +70,7 @@
         [TestMethod]
         public void RemoveTest()
         {
-            data_structures.Lists.DoublyLinkedList<int> list = new data_structures.Lists.DoublyLinkedList<int>();
+            DoublyLinkedList<int> list = new data_structures.Collections.Lists.DoublyLinkedList<int>();
             list.Add(0);
             list.Remove(0);
 
@@ -78,7 +80,7 @@
         [TestMethod]
         public void RemoveAtTest()
         {
-            data_structures.Lists.DoublyLinkedList<int> list = new data_structures.Lists.DoublyLinkedList<int>();
+            DoublyLinkedList<int> list = new data_structures.Collections.Lists.DoublyLinkedList<int>();
             list.Add(0);
             list.RemoveAt(0);
 
@@ -88,7 +90,7 @@
         [TestMethod]
         public void EmptyTest()
         {
-            data_structures.Lists.DoublyLinkedList<int> list = new data_structures.Lists.DoublyLinkedList<int>();
+            DoublyLinkedList<int> list = new data_structures.Collections.Lists.DoublyLinkedList<int>();
 
             Assert.IsTrue(list.Empty());
         }
