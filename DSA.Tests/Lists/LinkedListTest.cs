@@ -1,120 +1,98 @@
 ﻿namespace DSA.Tests.Lists
 {
     [TestClass]
-    public class LinkedListTest
+    public class LinkedListTests
     {
         [TestMethod]
-        public void PushBack_LinkedList()
-        {
-            int expectedValue = 10;
-
-            data_structures.Lists.LinkedList<int> list = new data_structures.Lists.LinkedList<int>();
-            list.PushBack(expectedValue);
-
-            Assert.AreEqual(expectedValue, list[0]);
-        }
-
-        [TestMethod]
-        public void PushFront_LinkedList()
-        {
-            int expectedValue = 10;
-
-            data_structures.Lists.LinkedList<int> list = new data_structures.Lists.LinkedList<int>();
-            list.PushFront(expectedValue);
-
-            Assert.AreEqual(expectedValue, list[0]);
-        }
-
-        [TestMethod]
-        public void PopFront_LinkedList()
-        {
-            int expectedLength = 0;
-
-            data_structures.Lists.LinkedList<int> list = new data_structures.Lists.LinkedList<int>();
-            list.PushFront(10);
-            list.PopFront();
-
-            Assert.AreEqual(expectedLength, list.Length);
-        }
-
-        [TestMethod]
-        public void Remove_Index_LinkedList()
-        {
-            int expectedLength = 0;
-            int value = 10;
- 
-            data_structures.Lists.LinkedList<int> list = new data_structures.Lists.LinkedList<int>();
-            list.PushFront(value);
-            list.Remove(0);
-
-            Assert.AreEqual(expectedLength, list.Length);
-        }
-
-        [TestMethod]
-        public void Remove_Value_LinkedList()
-        {
-            int expectedLength = 0;
-            int value = 10;
-
-            data_structures.Lists.LinkedList<int> list = new data_structures.Lists.LinkedList<int>();
-            list.PushFront(value);
-            list.Remove(value:value);
-
-            Assert.AreEqual(expectedLength, list.Length);
-        }
-
-        [TestMethod]
-        public void Insert_LinkedList()
-        {
-            int expectedValue = 10;
-            int index = 0;
-
-            data_structures.Lists.LinkedList<int> list = new data_structures.Lists.LinkedList<int>();
-            list.PushFront(0);
-            list.Insert(index, expectedValue);
-            list.PushBack(0);
-
-            Assert.AreEqual(expectedValue, list[index + 1]);
-        }
-
-        [TestMethod]
-        public void Length_LinkedList()
+        public void AddTest()
         {
             int expectedLength = 1;
+            int expectedValue = 10;
 
             data_structures.Lists.LinkedList<int> list = new data_structures.Lists.LinkedList<int>();
-            list.PushBack(10);
+            list.Add(expectedValue);
+
+            Assert.AreEqual(expectedLength, list.Length);
+            Assert.AreEqual(expectedValue, list[0]);
+        }
+
+        [TestMethod]
+        public void ClearTest()
+        {
+            int expectedLength = 0;
+            
+            data_structures.Lists.LinkedList<int> list = new data_structures.Lists.LinkedList<int>();
+            list.Add(0);
+            list.Add(0);
+            list.Add(0);
+            list.Clear();
 
             Assert.AreEqual(expectedLength, list.Length);
         }
 
         [TestMethod]
-        public void Empty_LinkedList()
+        public void ContainsTest()
         {
             data_structures.Lists.LinkedList<int> list = new data_structures.Lists.LinkedList<int>();
+            list.Add(0);
+
+            Assert.IsTrue(list.Contains(0));
+        }
+
+        [TestMethod]
+        public void IndexOfTest()
+        {
+            int expectedIndex = 2;
+
+            data_structures.Lists.LinkedList<int> list = new data_structures.Lists.LinkedList<int>();
+            list.Add(0);
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+            list.Add(4);
+
+            Assert.AreEqual(expectedIndex, list.IndexOf(2));
+        }
+
+        [TestMethod]
+        public void InsertTest()
+        {
+            int expectedLength = 3;
+
+            data_structures.Lists.LinkedList<int> list = new data_structures.Lists.LinkedList<int>();
+            list.Insert(0, 0);
+            list.Insert(0, 1);
+            list.Insert(0, 2);
+
+            Assert.AreEqual(expectedLength, list.Length);
+        }
+
+        [TestMethod]
+        public void RemoveTest()
+        {
+            data_structures.Lists.LinkedList<int> list = new data_structures.Lists.LinkedList<int>();
+            list.Add(0);
+            list.Remove(0);
 
             Assert.IsTrue(list.Empty());
         }
 
         [TestMethod]
-        public void Enumerable_LinkedList()
+        public void RemoveAtTest()
         {
-            int[] expectedValues = { 0, 1, 2, 3, 4 };
-
-
             data_structures.Lists.LinkedList<int> list = new data_structures.Lists.LinkedList<int>();
-            list.PushBack(expectedValues[0]);
-            list.PushBack(expectedValues[1]);
-            list.PushBack(expectedValues[2]);
-            list.PushBack(expectedValues[3]);
-            list.PushBack(expectedValues[4]);
+            list.Add(0);
+            list.RemoveAt(0);
 
-            int index = 0;
-            foreach (var item in list)
-            {
-                Assert.AreEqual(expectedValues[index], item);
-                index += 1;
-            }
+            Assert.IsTrue(list.Empty());
+        }
+
+        [TestMethod]
+        public void EmptyTest()
+        {
+            data_structures.Lists.LinkedList<int> list = new data_structures.Lists.LinkedList<int>();
+
+            Assert.IsTrue(list.Empty());
         }
     }
 }

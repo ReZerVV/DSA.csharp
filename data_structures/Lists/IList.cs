@@ -2,7 +2,7 @@
 
 namespace data_structures.Lists
 {
-    public interface IList<T> : IEnumerable<T>, IEnumerable
+    public interface IList<T> : IEnumerable<T>
     {
         int Length { get; }
 

@@ -14,9 +14,9 @@ namespace data_structures.Lists
         }
     }
 
-    public class LinkedList<T> : IEnumerable<T>
+    public class LinkedList<T> : IList<T>
     {
-        public LinkedListNode<T>? Front { get; private set; } = null;
+        private LinkedListNode<T>? _first;
 
         public LinkedList()
         {
@@ -25,7 +25,7 @@ namespace data_structures.Lists
 
         public LinkedList(LinkedList<T> other)
         {
-            Front = other.Front;
+            _first = other._first;
             Length = other.Length;
         }
 
@@ -35,105 +35,188 @@ namespace data_structures.Lists
         {
             get
             {
-                if (0 > index || index >= Length) 
+                var indexNode = 0;
+                var currentNode = _first;
+                while (currentNode != null)
                 {
-                    throw new IndexOutOfRangeException();
+                    if (indexNode == index)
+                    {
+                        return currentNode.Value;
+                    }
                 }
-                int indexList;
-                LinkedListNode<T>? nodeList;
-                for (nodeList = Front, indexList = 0; indexList != index; nodeList = nodeList.Next, indexList += 1) {}
-                return nodeList.Value;
+                throw new IndexOutOfRangeException();
             }
             set
             {
-                if (0 > index || index >= Length) 
+                var indexNode = 0;
+                var currentNode = _first;
+                while (currentNode != null)
                 {
-                    throw new IndexOutOfRangeException();
+                    if (indexNode == index)
+                    {
+                        currentNode.Value = value;
+                    }
                 }
-                int indexList;
-                LinkedListNode<T>? nodeList;
-                for (nodeList = Front, indexList = 0; indexList != index; nodeList = nodeList.Next, indexList += 1) {}
-                nodeList.Value = value;
+                throw new IndexOutOfRangeException();
             }
         }
 
-        public void PushFront(T value)
+        public void Add(T value)
         {
-            LinkedListNode<T> node = new LinkedListNode<T>(value, Front);
-            Front = node;
-            Length += 1;
-        }
-
-        public void PopFront()
-        {
-            Front = Front.Next;
-            Length -= 1;
-        }
-
-        public void PushBack(T value)
-        {
-            if (Front == null) 
+            if (_first == null)
             {
-                Front = new LinkedListNode<T>(value, null);
+                _first = new LinkedListNode<T>(value);
                 Length += 1;
-                return;
             }
-            LinkedListNode<T>? node;
-            for (node = Front; node.Next != null; node = node.Next) { }
-            node.Next = new LinkedListNode<T>(value, null);
-            Length += 1;
+            else
+            {
+                var previousNode = _first;
+                var currentNode = _first.Next;
+                while (currentNode != null) 
+                {
+                    previousNode = currentNode;
+                    currentNode = currentNode.Next;
+                }
+                previousNode.Next = new LinkedListNode<T>(value);
+                Length += 1;
+            }
+        }
+
+        public void Clear()
+        {
+            _first = null;
+            Length = 0;
+        }
+
+        public bool Contains(T value)
+        {
+            if (_first == null)
+            {
+                return false;
+            }
+            else
+            {
+                var currentNode = _first;
+                while (currentNode != null) 
+                {
+                    if (currentNode.Value.Equals(value))
+                    {
+                        return true;
+                    }
+                    currentNode = currentNode.Next;
+                }
+                return false;
+            }
+        }
+
+        public int IndexOf(T value)
+        {
+            if (_first == null)
+            {
+                return -1;
+            }
+            else
+            {
+                var indexNode = 0;
+                var currentNode = _first;
+                while (currentNode != null)
+                {
+                    if (currentNode.Value.Equals(value))
+                    {
+                        return indexNode;
+                    }
+                    indexNode += 1;
+                    currentNode = currentNode.Next;
+                }
+                return -1;
+            }
         }
 
         public void Insert(int index, T value)
         {
-            if (0 > index || index >= Length)
+            var indexNode = 0;
+            if (indexNode == index && _first == null) 
             {
-                throw new IndexOutOfRangeException();
+                _first = new LinkedListNode<T>(value);
+                Length += 1;
+                return;
             }
-            int indexList;
-            LinkedListNode<T>? nodeList;
-            for (nodeList = Front, indexList = 0; nodeList != null; nodeList = nodeList.Next, indexList += 1)
+            var currentNode = _first;
+            while (currentNode != null)
             {
-                if (indexList == index)
+                if (indexNode == index)
                 {
-                    LinkedListNode<T> node = new LinkedListNode<T>(value, nodeList.Next);
-                    nodeList.Next = node;
+                    currentNode.Next = new LinkedListNode<T>(value, currentNode.Next);
                     Length += 1;
                     return;
                 }
+                currentNode = currentNode.Next;
             }
-        }
-
-        public void Remove(int index)
-        {
-            if (0 > index || index >= Length)
-            {
-                throw new IndexOutOfRangeException();
-            }
-            int indexList;
-            LinkedListNode<T>? nodeList;
-            for (nodeList = Front, indexList = 0; nodeList != null; nodeList = nodeList.Next, indexList += 1)
-            {
-                if (indexList == index)
-                {
-                    nodeList.Next = nodeList.Next?.Next;
-                    Length -= 1;
-                    return;
-                }
-            }
+            throw new IndexOutOfRangeException();
         }
 
         public void Remove(T value)
         {
-            LinkedListNode<T>? nodeList;
-            for (nodeList = Front; nodeList != null; nodeList = nodeList.Next)
+            if (_first == null)
             {
-                if (nodeList.Value.Equals(value))
+                throw new IndexOutOfRangeException();
+            }
+            else
+            {
+                if (_first.Value.Equals(value))
                 {
-                    nodeList.Next = nodeList.Next?.Next;
+                    _first = _first.Next;
                     Length -= 1;
                     return;
                 }
+
+                var prevoiusNode = _first;
+                var currentNode = _first.Next;
+                while (currentNode != null)
+                {
+                    if (currentNode.Value.Equals(value))
+                    {
+                        prevoiusNode.Next = currentNode.Next;
+                        Length -= 1;
+                        return;
+                    }
+                    prevoiusNode = currentNode;
+                    currentNode = currentNode.Next;
+                }
+                throw new IndexOutOfRangeException();
+            }
+        }
+
+        public void RemoveAt(int index)
+        {
+            if (_first == null)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else
+            {
+                var indexNode = 0;
+                if (indexNode == index)
+                {
+                    _first = _first.Next;
+                    Length -= 1;
+                    return;
+                }
+
+                var prevoiusNode = _first;
+                var currentNode = _first.Next;
+                while (currentNode != null)
+                {
+                    if (indexNode == index)
+                    {
+                        prevoiusNode.Next = currentNode.Next;
+                        Length -= 1;
+                        return;
+                    }
+                    prevoiusNode = currentNode;
+                    currentNode = currentNode.Next;
+                }
+                throw new IndexOutOfRangeException();
             }
         }
 
@@ -144,17 +227,17 @@ namespace data_structures.Lists
 
         public IEnumerator<T> GetEnumerator()
         {
-            LinkedListNode<T> current = Front;
-            while (current != null)
+            var currentNode = _first;
+            while (currentNode != null)
             {
-                yield return current.Value;
-                current = current.Next;
+                yield return currentNode.Value;
+                currentNode = currentNode.Next;
             }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return (IEnumerator) GetEnumerator();
+            return GetEnumerator();
         }
     }
 }
