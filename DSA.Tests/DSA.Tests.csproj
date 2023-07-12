@@ -17,9 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\algorithms\algorithms.csproj" />
-    <ProjectReference Include="..\data_structures\data_structures.csproj" />
-    <ProjectReference Include="..\TASKS\TASKS.csproj" />
+    <ProjectReference Include="..\Custom.Collections.Lists\Custom.Collections.Lists.csproj" />
   </ItemGroup>
 
 </Project>
