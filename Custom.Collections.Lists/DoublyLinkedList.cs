@@ -72,7 +72,7 @@ namespace Custom.Collections.Lists
             {
                 var currentIndex = 0;
                 var currentNode = m_first;
-                while (currentNode != m_last.Next)
+                while (currentNode != m_last?.Next)
                 {
                     currentNode = currentNode.Next;
                     currentIndex += 1;
@@ -178,26 +178,23 @@ namespace Custom.Collections.Lists
 
         public bool Remove(T item)
         {
-            if (m_first == null) 
-            {
-                throw new NullReferenceException(nameof(DoublyLinkedList<T>));
-            }
             var currentNode = m_first;
-            while (currentNode != m_last.Next)
+            while (currentNode != m_last?.Next)
             {
                 if (currentNode.Value.Equals(item))
                 {
                     if (currentNode == m_first)
                     {
-                        m_first = currentNode.Next;
+                        m_first = m_first.Next;
                         return true;
                     }
                     if (currentNode == m_last)
                     {
-                        m_last = currentNode.Previous;
+                        m_last = m_last.Previous;
                         return true;
                     }
-                    currentNode.Previous = currentNode.Next;
+                    currentNode.Previous.Next = currentNode.Next;
+                    currentNode.Next.Previous = currentNode.Previous;
                     return true;
                 }
                 currentNode = currentNode.Next;
@@ -207,30 +204,28 @@ namespace Custom.Collections.Lists
 
         public void RemoveAt(int index)
         {
-            if (m_first == null)
-            {
-                throw new NullReferenceException(nameof(DoublyLinkedList<T>));
-            }
             var currentIndex = 0;
             var currentNode = m_first;
-            while (currentNode != m_last.Next)
+            while (currentNode != m_last?.Next)
             {
                 if (currentIndex == index)
                 {
                     if (currentNode == m_first)
                     {
-                        m_first = currentNode.Next;
+                        m_first = m_first.Next;
                         return;
                     }
                     if (currentNode == m_last)
                     {
-                        m_last = currentNode.Previous;
+                        m_last = m_last.Previous;
                         return;
                     }
-                    currentNode.Previous = currentNode.Next;
+                    currentNode.Previous.Next = currentNode.Next;
+                    currentNode.Next.Previous = currentNode.Previous;
                     return;
                 }
                 currentNode = currentNode.Next;
+                currentIndex += 1;
             }
             throw new IndexOutOfRangeException(nameof(index));
         }
