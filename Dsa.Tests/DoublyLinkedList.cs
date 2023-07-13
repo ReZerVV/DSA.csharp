@@ -1,6 +1,6 @@
-﻿using Custom.Collections.Lists;
+﻿using Custom.Collections.List;
 
-namespace Dsa.Tests.Custom.Collections.Lists
+namespace Dsa.Tests
 {
     [TestClass]
     public class DoublyLinkedList

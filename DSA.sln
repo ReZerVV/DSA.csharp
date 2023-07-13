@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F8E6A54A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dsa.Tests", "Dsa.Tests\Dsa.Tests.csproj", "{C9BD6F0F-E4C9-4192-82BB-95F4FC2F8E9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Custom.Collections", "Custom.Collections\Custom.Collections.csproj", "{D5F5F11C-802D-48A5-BC03-ECE87F5087E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Custom.Collections", "Custom.Collections\Custom.Collections.csproj", "{D5F5F11C-802D-48A5-BC03-ECE87F5087E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

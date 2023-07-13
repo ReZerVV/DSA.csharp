@@ -28,6 +28,29 @@
             m_array = new Hashtable_Node<TKey, TValue>[10];
         }
 
+        public TValue this[TKey key]
+        {
+            get
+            {
+                var currentIndex = 0;
+                var index = key.GetHashCode() % m_array.Length;
+                while (currentIndex < m_array.Length)
+                {
+                    if (m_array[index] == null)
+                    {
+                        break;
+                    }
+                    if (m_array[index].Key.Equals(key))
+                    {
+                        return m_array[index].Value;
+                    }
+                    index = (index + 1) % m_array.Length;
+                    currentIndex += 1;
+                }
+                throw new KeyNotFoundException(nameof(key));
+            }
+        }
+
         public void Add(TKey key, TValue value)
         {
             if (m_size < m_array.Length)
