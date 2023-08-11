@@ -4,6 +4,20 @@
     {
         private Lists.LinkedList<T> items;
 
+        public Queue()
+        {
+            items = new Lists.LinkedList<T>();
+        }
+
+        public Queue(IEnumerable<T> items)
+            : this()
+        {
+            foreach (T item in items)
+            {
+                Enqueue(item);
+            }
+        }
+
         public bool Empty()
         {
             return items.Empty();

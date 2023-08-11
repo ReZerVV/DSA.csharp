@@ -34,6 +34,15 @@
             length = 0;
         }
 
+        public PriorityQueue(IEnumerable<T> items)
+            : this(items.Count())
+        {
+            foreach (T item in items)
+            {
+                Enqueue(item, 0);
+            }
+        }
+
         public bool Empty()
         {
             return length == 0;

@@ -14,8 +14,6 @@
 				Queues:
 					Queue
 					PriorityQueue
-					DoubleEndedQueue
-					DoubleEndedPriorityQueue
 				Sets:
 					Set
 					HashSet
@@ -58,9 +56,7 @@ Custom.Structures.Collections.Lists.DoublyLinkedCyclicList +
 Custom.Structures.Collections.Stacks.Stack + 
 Custom.Structures.Collections.Deques.Deque +
 Custom.Structures.Collections.Queues.Queue +
-Custom.Structures.Collections.Queues.PriorityQueue
-Custom.Structures.Collections.Queues.DoubleEndedQueue
-Custom.Structures.Collections.Queues.DoubleEndedPriorityQueue
+Custom.Structures.Collections.Queues.PriorityQueue +
 Custom.Structures.Collections.Sets.Set
 Custom.Structures.Collections.Sets.HashSet
 Custom.Structures.Collections.Sets.TreeSet

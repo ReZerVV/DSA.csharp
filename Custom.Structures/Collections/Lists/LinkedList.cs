@@ -174,6 +174,18 @@ namespace Custom.Structures.Collections.Lists
             length = 0;
         }
 
+        public bool Contains(T value)
+        {
+            for (Node currentNode = front; currentNode != null; currentNode = currentNode.Next)
+            {
+                if (currentNode.Value.Equals(value))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             for (Node currentNode = front; currentNode != null; currentNode = currentNode.Next)
