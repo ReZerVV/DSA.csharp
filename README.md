@@ -55,9 +55,9 @@ Custom.Structures.Collections.Lists.LinkedList +
 Custom.Structures.Collections.Lists.LinkedCyclicList + 
 Custom.Structures.Collections.Lists.DoublyLinkedList +
 Custom.Structures.Collections.Lists.DoublyLinkedCyclicList +
-Custom.Structures.Collections.Stacks.Stack
-Custom.Structures.Collections.Deques.Deque
-Custom.Structures.Collections.Queues.Queue
+Custom.Structures.Collections.Stacks.Stack + 
+Custom.Structures.Collections.Deques.Deque +
+Custom.Structures.Collections.Queues.Queue +
 Custom.Structures.Collections.Queues.PriorityQueue
 Custom.Structures.Collections.Queues.DoubleEndedQueue
 Custom.Structures.Collections.Queues.DoubleEndedPriorityQueue
