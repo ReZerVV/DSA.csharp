@@ -1,8 +1,10 @@
-Namespaces:
+Files:
 
 	Custom:
 		Structures:
 			Collections:
+				Arrays:
+					Array
 				Lists:
 					LinkedList
 					LinkedCyclicList
@@ -49,27 +51,29 @@ Namespaces:
 				Prims
 				Kruskals
 
-Namespace full name types:
+Namespaces:
+
+	Custom.Structures.Collections.Arrays.Array + 
 
 	Custom.Structures.Collections.Lists.LinkedList +
-	Custom.Structures.Collections.Lists.LinkedCyclicList + 
+	Custom.Structures.Collections.Lists.LinkedCyclicList +
 	Custom.Structures.Collections.Lists.DoublyLinkedList +
-	Custom.Structures.Collections.Lists.DoublyLinkedCyclicList + 
+	Custom.Structures.Collections.Lists.DoublyLinkedCyclicList +
 
-	Custom.Structures.Collections.Stacks.Stack + 
+	Custom.Structures.Collections.Stacks.Stack +
 
 	Custom.Structures.Collections.Deques.Deque +
 
 	Custom.Structures.Collections.Queues.Queue +
 	Custom.Structures.Collections.Queues.PriorityQueue +
 
-	Custom.Structures.Collections.Sets.Set + 
+	Custom.Structures.Collections.Sets.Set +
 	Custom.Structures.Collections.Sets.HashSet
 	Custom.Structures.Collections.Sets.TreeSet
 	Custom.Structures.Collections.Sets.MultiSet
 
-	Custom.Structures.Collections.Maps.Map
-	Custom.Structures.Collections.Maps.HashMap
+	Custom.Structures.Collections.Maps.Map +
+	Custom.Structures.Collections.Maps.HashMap +
 	Custom.Structures.Collections.Maps.TreeMap
 	Custom.Structures.Collections.Maps.MultiMap
 
