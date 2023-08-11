@@ -44,6 +44,19 @@
             items.Add(new KayValuePair { Key = key, Value = value });
         }
 
+        public void Remove(TKey key)
+        {
+            foreach (Map<TKey, TValue>.KayValuePair item in items)
+            {
+                if (key.Equals(item.Key))
+                {
+                    items.Remove(item);
+                    return;
+                }
+            }
+            throw new KeyNotFoundException(nameof(key));
+        }
+
         public TValue GetValue(TKey key)
         {
             foreach (Map<TKey, TValue>.KayValuePair item in items)
