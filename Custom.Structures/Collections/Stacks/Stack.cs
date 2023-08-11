@@ -25,11 +25,19 @@
 
         public T Peek()
         {
+            if (Empty())
+            {
+                throw new ArgumentOutOfRangeException();
+            }
             return items[items.Length - 1];
         }
 
         public void Pop()
         {
+            if (Empty())
+            {
+                throw new ArgumentOutOfRangeException();
+            }
             items.RemoveAt(items.Length - 1);
         }
 
