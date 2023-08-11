@@ -11,9 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Custom.Structures", "Custom.Structures\Custom.Structures.csproj", "{85525B0F-B686-42A2-9187-F9474251E5A2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Custom.Algorithms", "Custom.Algorithms\Custom.Algorithms.csproj", "{C180FB34-904C-457D-A910-A9519D451A2E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Custom", "Custom\Custom.csproj", "{D2D83D70-50A5-4A1C-9236-6D0C6BBED50F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,14 +19,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{85525B0F-B686-42A2-9187-F9474251E5A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85525B0F-B686-42A2-9187-F9474251E5A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85525B0F-B686-42A2-9187-F9474251E5A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85525B0F-B686-42A2-9187-F9474251E5A2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C180FB34-904C-457D-A910-A9519D451A2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C180FB34-904C-457D-A910-A9519D451A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C180FB34-904C-457D-A910-A9519D451A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C180FB34-904C-457D-A910-A9519D451A2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2D83D70-50A5-4A1C-9236-6D0C6BBED50F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2D83D70-50A5-4A1C-9236-6D0C6BBED50F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2D83D70-50A5-4A1C-9236-6D0C6BBED50F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2D83D70-50A5-4A1C-9236-6D0C6BBED50F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
